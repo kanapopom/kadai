@@ -1,0 +1,73 @@
+root {
+    display: block;
+}
+body{
+    font-size: 1.2em;
+    background: url(../img/coffee.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
+/* LISTページ */
+.container{
+  background: url(../img/coffee.jpg) no-repeat center center fixed;
+}
+
+#list{
+    border: 1px solid #666;
+    font-size: 100%;
+}
+#list td {
+    border-top: 1px solid #666;
+}
+
+/* MENU */
+#menu td{
+    text-align: center;
+    margin-bottom: 20px;
+    width: 170px;
+    height: 40px;
+    background-color: #000;
+    color: #FFF;
+    font-size: 20px;
+}
+#menu a{
+    color: #FFF;
+}
+#menu a:hover{
+    color: #f60;
+}
+#menu a:active{
+    color: #fff;
+}
+
+/* 詳細ページ */
+#select_one{
+    width:900px;
+}
+#select_one td{
+    border: 1px solid #555;
+}
+.ltitle{
+    width:200px;
+    text-align: left;
+    background-color: #ccc;
+    font-weight: bold;
+}
+.rtitle{
+    width:700px;
+    text-align: left;
+    background-color: #fff;
+}
+
+.c_btn{
+    text-align: center;
+}
+
+.panel-default {
+opacity: 0.9;
+margin-top:30px;
+}
+.form-group.last { margin-bottom:0px; }
