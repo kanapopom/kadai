@@ -1,11 +1,10 @@
 <?php
-session_start();
-include("functions.php");
-//0.外部ファイル読み込み
-sessChk();
-
 //1.  DB接続します
-$pdo = db_con();
+try {
+  $pdo = new PDO('mysql:dbname=gs_db35;charset=utf8;host=localhost','root','');
+} catch (PDOException $e) {
+  exit('データベースに接続できませんでした。'.$e->getMessage());
+}
 
 //２．データ登録SQL作成
 $stmt = $pdo->prepare("SELECT * FROM gs_an_table");
@@ -14,23 +13,25 @@ $status = $stmt->execute();
 //３．データ表示
 $view="";
 if($status==false){
-  queryError($stmt);
+  //execute（SQL実行時にエラーがある場合）
+  $error = $stmt->errorInfo();
+  exit("ErrorQuery:".$error[2]);
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
     $view .='<p>';
     $view .= '<a href="dataupdate.php?id='. $result["id"].'">';
     $view .= $result["indate"] ."：". $result["name"] ;
-  
-    if($_SESSION["kanri_flg"] == "1"){
-    $view .= '<a href="delete.php?id='.$result["id"].'">';
-    $view .= '[削除]';
     $view .= '</a>';
-    }
+    $view .= '<a href="delete.php?id='. $result["id"].'">  [削除]';
+    $view .= '</a>';
     $view .= '</p>';
+
   }
 }
 ?>
+
+<!-- $result["name"]."[".$result["indate"]."]<br>"; -->
 
 
 <!DOCTYPE html>
@@ -47,15 +48,10 @@ if($status==false){
 <body id="main">
 <!-- Head[Start] -->
 <header>
-  <div>
-    <?=$_SESSION["name"]?>さん、こんにちは
-  </div>
   <nav class="navbar navbar-default">
     <div class="container-fluid">
       <div class="navbar-header">
-      <a class="navbar-brand" href="index.php">データ登録</a>
-      <a class="navbar-brand" href="user.php">ユーザー表示</a>
-      <a class="navbar-brand" href="logout.php">ログアウト</a>
+      <a class="navbar-brand" href="index.php">データ登録</a><a class="navbar-brand" href="login.php">ユーザー登録</a>
     </div>
   </nav>
 </header>

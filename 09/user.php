@@ -8,7 +8,7 @@ sessChk();
 $pdo = db_con();
 
 //２．データ登録SQL作成
-$stmt = $pdo->prepare("SELECT * FROM gs_an_table");
+$stmt = $pdo->prepare("SELECT * FROM gs_user_table");
 $status = $stmt->execute();
 
 //３．データ表示
@@ -18,12 +18,13 @@ if($status==false){
 }else{
   //Selectデータの数だけ自動でループしてくれる
   while( $result = $stmt->fetch(PDO::FETCH_ASSOC)){
-    $view .='<p>';
-    $view .= '<a href="dataupdate.php?id='. $result["id"].'">';
-    $view .= $result["indate"] ."：". $result["name"] ;
-  
+    $view .= '<p>';
+    $view .= h($result["name"]);
+    $view .= '</a>';
+
+
     if($_SESSION["kanri_flg"] == "1"){
-    $view .= '<a href="delete.php?id='.$result["id"].'">';
+    $view .= '<a href="userdelete.php?id='.$result["id"].'">';
     $view .= '[削除]';
     $view .= '</a>';
     }
@@ -39,7 +40,7 @@ if($status==false){
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>フリーアンケート表示</title>
+<title>ユーザー表示</title>
 <link rel="stylesheet" href="css/style.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
 <style>div{padding: 10px;font-size:16px;}</style>
@@ -54,8 +55,9 @@ if($status==false){
     <div class="container-fluid">
       <div class="navbar-header">
       <a class="navbar-brand" href="index.php">データ登録</a>
-      <a class="navbar-brand" href="user.php">ユーザー表示</a>
+      <a class="navbar-brand" href="select.php">データ表示</a>
       <a class="navbar-brand" href="logout.php">ログアウト</a>
+
     </div>
   </nav>
 </header>
