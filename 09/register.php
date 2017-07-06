@@ -42,7 +42,7 @@ if($status==false){
   exit("QueryError:".$error[2]);
 }else{
   //５．index.phpへリダイレクト
-  header("Location: login2.php");
+  header("Location: login.php");
   exit;
 }
 ?>
