@@ -42,6 +42,7 @@ if($status==false){
   <link href="css/bootstrap.min.css" rel="stylesheet">
   <link href="css/style.css" rel="stylesheet">
   <style>div{padding: 10px;font-size:16px;}</style>
+  <script src="./ckeditor/ckeditor.js"></script>
 </head>
 <body>
 
@@ -64,9 +65,17 @@ if($status==false){
   <div class="jumbotron">
    <fieldset>
     <legend>フリーアンケート</legend>
+    <form method="POST" action="insert.php" enctype="multipart/form-data">
+<input type="file" name="filename">
+<input type="submit" name="submit" value="送信">
+</form>
      <label>名前：<input type="text" name="name"></label><br>
      <label>Email：<input type="text" name="email"></label><br>
-     <label><textArea name="naiyou" rows="4" cols="40"></textArea></label><br>
+     <!-- <label><textArea name="naiyou" rows="4" cols="40"></textArea></label><br> -->
+     <textarea name="naiyou" id="editor1" cols="80" rows="10"></textarea>
+     <script>
+      CKEDITOR.replace("editor1");
+     </script>
      <input type="submit" value="送信">
     </fieldset>
   </div>

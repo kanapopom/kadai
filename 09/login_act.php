@@ -31,7 +31,7 @@ if( $val["id"] != "" ){
   header("Location: select.php");
 }else{
   //logout処理を経由して全画面へ
-  header("Location: login2.php");
+  header("Location: login.php");
 }
 
 exit();

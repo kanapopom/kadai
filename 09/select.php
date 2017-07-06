@@ -21,7 +21,7 @@ if($status==false){
     $view .='<p>';
     $view .= '<a href="dataupdate.php?id='. $result["id"].'">';
     $view .= $result["indate"] ."：". $result["name"] ;
-  
+
     if($_SESSION["kanri_flg"] == "1"){
     $view .= '<a href="delete.php?id='.$result["id"].'">';
     $view .= '[削除]';
@@ -40,8 +40,8 @@ if($status==false){
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>フリーアンケート表示</title>
-<link rel="stylesheet" href="css/style.css">
 <link href="css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
 <style>div{padding: 10px;font-size:16px;}</style>
 </head>
 <body id="main">

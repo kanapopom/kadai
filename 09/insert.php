@@ -13,6 +13,18 @@ if(
 $name   = $_POST["name"];
 $email  = $_POST["email"];
 $naiyou = $_POST["naiyou"];
+if(isset($_FILES['filename']) && $_FILES['filename']['error']==0){
+    $upload_file = "./upload/".$_FILES["filename"]["name"];
+    if (move_uploaded_file($_FILES["filename"]['tmp_name'],$upload_file)){
+        chmod($upload_file,0644);
+        echo 'アップロード成功';
+        echo '<img src="'.$upload_file.'">';
+    }else{
+        echo "fileuploadOK...Failed";
+    }
+}else{
+    echo "fileupload失敗";
+}
 
 //2. DB接続します(エラー処理追加)
 $pdo = db_con();
